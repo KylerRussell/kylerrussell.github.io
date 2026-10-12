@@ -1,0 +1,35 @@
+# Work — ventures and client projects. Listed on the home page and on /archive/.
+# Fields: title, kind, year, period, current, url, role, summary, tags,
+#         stat / stat_label (optional big number for a highlight panel)
+
+- title: ComfyCup LLC
+  kind: Venture
+  year: "2016"
+  period: 2016 – present
+  current: true
+  active: true
+  role: Co-founder & Co-CEO
+  url: "https://www.thecomfycup.com"
+  link_label: thecomfycup.com
+  stat: "100,000+"
+  stat_label: units sold worldwide
+  summary: >-
+    I came up with the idea at eight: a more comfortable athletic cup for boys.
+    We co-invented it, brought it to market, and scaled it to customers in all
+    50 states and abroad — coordinating design, manufacturing and marketing as
+    a small founding team.
+  tags: [Entrepreneurship, Product]
+
+- title: HARCKC website redesign
+  kind: Client work
+  year: "2024"
+  period: Oct 2024
+  current: true
+  role: Design & development
+  url: "https://harckc.org"
+  link_label: harckc.org
+  summary: >-
+    Graphic-design overhaul for the Heart of America Relocation Council, a
+    Kansas City nonprofit: a custom Wild Apricot theme with new page
+    templates, layouts, typography, color system and widget styles.
+  tags: [Web design, Wild Apricot, HTML/CSS, JavaScript]

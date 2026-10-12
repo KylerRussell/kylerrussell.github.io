@@ -1,0 +1,21 @@
+---
+layout: default
+title: Writing
+description: Notes on quantization, reinforcement learning, and things I've built.
+---
+<section class="frame prose-page">
+  <header class="page-head">
+    <p class="eyebrow">Writing</p>
+    <h1>Notes</h1>
+    <p class="section-sub">{{ page.description }}</p>
+  </header>
+  {%- if site.posts.size > 0 %}
+  <ul class="post-list">
+    {%- for post in site.posts %}
+    <li><a href="{{ post.url | relative_url }}"><span class="mono">{{ post.date | date: '%b %-d, %Y' }}</span><span>{{ post.title }}</span></a></li>
+    {%- endfor %}
+  </ul>
+  {%- else %}
+  <p class="empty">Nothing published yet — check back soon, or subscribe via <a href="{{ '/feed.xml' | relative_url }}">RSS</a>.</p>
+  {%- endif %}
+</section>

@@ -1,0 +1,70 @@
+# Personal projects. `current: true` shows a project on the home page; `active: true` marks it ongoing;
+# every project is listed on /archive/ under its start `year`.
+# Fields: title, kind, year, period, current, url, summary, tags, plus optional
+#   feature (true = large panel with architecture figure), finding, story,
+#   networks, spec (list of {key, value}) for the spec-sheet style card.
+
+- title: AlphaSlayer
+  kind: Personal project
+  year: "2026"
+  period: "2026"
+  current: true
+  active: true
+  feature: true
+  subtitle: A two-network RL agent for Slay the Spire 2
+  url: "https://github.com/KylerRussell/AlphaSlayer"
+  finding: "Scripted heuristics out-reached the trained net on bosses → the bottleneck was run policy, not combat"
+  summary: >-
+    Slay the Spire is two problems stacked: winning each fight, and steering a
+    whole run so you arrive at the boss with a deck and HP that can win.
+    AlphaSlayer splits them into a fast tactical network and a larger strategic
+    one, both Transformer encoders over set-tokenized game state.
+  story:
+    - { label: "Observation", text: "Hand-written heuristics beat the trained agent on boss-reach rate." }
+    - { label: "Diagnosis", text: "Combat skill wasn't the ceiling — HP and deck management before bosses was." }
+    - { label: "Rebuild", text: "Training reworked around Generalized Advantage Estimation and paired-seed evaluation." }
+  networks:
+    - { name: Combat network, size: "~5–15M params", input: "Hand · piles · enemies & intents", output: "Card plays & targets" }
+    - { name: Run network, size: "~20–50M params", input: "Deck · relics · HP · map", output: "Deck building & HP management" }
+  tags: [Reinforcement learning, PyTorch, Transformers, GAE]
+
+- title: Home Kubernetes cluster
+  kind: Personal project
+  year: "2025"
+  period: Oct 2025 – present
+  current: true
+  active: true
+  repo: k8s-gitops
+  url: "https://github.com/KylerRussell/k8s-gitops"
+  summary: >-
+    A bare-metal Talos Linux cluster managed entirely from Git with Argo CD,
+    running 20+ services and the GPU workloads behind my research.
+  spec:
+    - { key: Hardware, value: "Self-built server · 2× RTX 3090 (24 GB) · ~629 GB RAM" }
+    - { key: Cluster, value: "Bare-metal Talos Linux Kubernetes" }
+    - { key: Delivery, value: "Argo CD app-of-apps · self-healing sync · Kustomize" }
+    - { key: Services, value: "Harbor · Prometheus / Grafana · Longhorn · MetalLB · Ingress-NGINX · Sealed Secrets · Coder · Nextcloud" }
+    - { key: GPU, value: "NVIDIA device plugin → Ollama, GPU-backed remote dev desktops" }
+    - { key: ML jobs, value: "Ray training images built and pushed by GitHub Actions" }
+    - { key: Access, value: "Tailscale VPN-only · firewall rules · access controls" }
+    - { key: Log, value: "278 commits since Oct 2025" }
+  tags: [Kubernetes, Talos, Argo CD, GitHub Actions]
+
+- title: Linux desktop environment
+  kind: Personal project
+  year: "2026"
+  period: Jun 2026
+  current: true
+  repo: personal-dotfiles
+  url: "https://github.com/KylerRussell/personal-dotfiles"
+  summary: >-
+    A modular, zero-rounding "tactical" desktop for virtualized machines —
+    flat, dense and grid-based — deployed and kept in sync with one command.
+  spec:
+    - { key: Window manager, value: "Hyprland — keymaps, rigid window rules, sharp-border theme" }
+    - { key: Terminal, value: "Kitty" }
+    - { key: Status bar, value: "Waybar system telemetry, monospace styling" }
+    - { key: Launcher, value: "Rofi" }
+    - { key: HUD, value: "Custom Python telemetry overlay" }
+    - { key: Deploy, value: "install.sh / update.sh — one-command setup and sync" }
+  tags: [Bash, Python, Hyprland]

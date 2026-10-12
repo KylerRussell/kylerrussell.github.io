@@ -1,53 +1,54 @@
-# WhatATheme
-**WhatATheme** is a customizable Jekyll Portfolio theme which supports blogging. You can use this theme in order to create an elegant, fully responsive portfolio.
+# kylerrussell.github.io
 
-#### You can checkout the [**Demo Here**](https://thedevslot.github.io/WhatATheme/) :boom:
+Personal site of Kyler Russell — built with [Jekyll](https://jekyllrb.com/) and deployed to GitHub Pages by GitHub Actions.
 
-![WhatATheme](assets/images/meta.jpg)
+## Editing content
 
-# Features :sparkles:
-* Free and Easy setup
-* No Coding Required
-* Compatible with [Github Pages](https://pages.github.com/)
-* Responsive and Blogging Ready
-* HTML Compressor using [Jekyll Compress HTML](https://jch.penibelst.de/)
-* Minified CSS using SaSS
-* CMS Admin Support using [Jekyll Admin](https://jekyll.github.io/jekyll-admin/)
-* Supports Latest [Jekyll 4.x](https://jekyllrb.com/) and [Bundler](https://bundler.io/)
-* Stylesheet built using SaSS
-* Comments using Disqus
-* Analytics using Google Analytics
-* Instant Search using [Simple Jekyll Search](https://github.com/christian-fei/Simple-Jekyll-Search/)
+Everything on the site comes from YAML files in `_data/`:
 
-# Installation :books:
-### System Requirements
-* [Ruby](https://www.ruby-lang.org/en/)
-* [Jekyll](https://jekyllrb.com/)
-> You can read **What is Jekyll** [**here**](https://thedevslot.github.io/WhatATheme/blog/what-is-jekyll-how-to-use-it)
-### Up and Running
-* Fork the [Repository](https://github.com/thedevslot/WhatATheme/)
-* Clone or download the repository into directory of your choice: `git clone https://github.com/thedevslot/WhatATheme.git`
-* Inside the directory run `bundle install`
-* Host WhatATheme locally by running `bundle exec jekyll s`
+| File | What it holds |
+| --- | --- |
+| `_data/research.yml` | **Research** — the three-pillar triad on the home page |
+| `_data/projects.yml` | **Personal projects** — AlphaSlayer (feature panel), k8s cluster and dotfiles (spec-sheet cards) |
+| `_data/work.yml` | **Work** — ComfyCup and client work |
+| `_data/experience.yml` | **Experience** — education / roles |
+| `_data/archive.yml` | High-school / Engineering Academy work (archive page only) |
 
-> You can read **How to Install and use WhatATheme?** [**here**](https://thedevslot.github.io/WhatATheme/blog/how-to-install-whatatheme)
+Two flags control where an entry appears:
 
-[<img src="https://i.imgur.com/TVI946Z.png" width="250" />](https://youtu.be/VfPa2c9kwhQ)
+- `current: true` — show it on the **home page**. Remove it (or set `false`) when something is no longer recent; it stays on the archive page.
+- `active: true` — mark it as ongoing (pulsing "Active" badge on the archive page).
 
----
+Every entry also needs `year:` (the year it started, as a string like `"2026"`). The **archive page** (`/archive/`, `archive/index.html`) merges all four data files and groups them by that year automatically.
 
-### Content Credits :green_heart:
-* [Hero Image](https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940) used as a background image in the very first section of Homepage.
-* [Author Image](https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png) used in the Author Section.
-* [Font Awesome](https://fontawesome.com/)
-* [Poppins Font](https://fonts.google.com/specimen/Poppins)
-* [Memphis Pattern](https://www.freepik.com/free-vector/memphis-pattern-background_4034913.htm#page=1&query=memphis%20pattern&position=23) used for some Social Media Images and the Favicon.
+Site-wide details (name, email, social handles, the "now active" radar lines, résumé link) live in `_config.yml`.
 
----
+### Writing
 
-### Credits :bulb:
-* [Sneha Omer](http://sassyecoder.github.io/)
-* [Harsh Trivedi](http://harsh98trivedi.github.io/)
+Add Markdown files to `_posts/` named `YYYY-MM-DD-title.md`. A **Writing** link appears in the nav automatically once there is at least one post. See `_drafts/example-post.md` for front matter.
 
-### License
-The contents of this repository are licensed under the [**GNU General Public License v2.0**](https://github.com/thedevslot/WhatATheme/blob/master/LICENSE)
+### Images
+
+`assets/img/` holds web-sized images (≈1400 px, ~150 KB). Original full-resolution photos stay in `assets/images/`, which is excluded from the built site.
+
+## Running locally
+
+```sh
+bundle install
+bundle exec jekyll serve --livereload
+# → http://localhost:4000
+```
+
+## Structure
+
+```
+_config.yml        site settings
+_data/             page content (YAML)
+_includes/         head, nav, footer
+_layouts/          default, page, post
+assets/css/site.css
+assets/js/site.js  archive photo carousel + lightbox
+index.html         home page
+archive/index.html everything, grouped by year
+writing/index.html blog index
+```

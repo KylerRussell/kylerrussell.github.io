@@ -1,0 +1,21 @@
+{%- assign home = '/' | relative_url -%}
+{%- if page.url == '/' -%}{%- assign prefix = '' -%}{%- else -%}{%- assign prefix = home -%}{%- endif -%}
+<header class="site-header">
+  <div class="frame nav">
+    <a class="brand" href="{{ home }}">[{{ site.author.name | upcase }}]</a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="{{ prefix }}#research">[Research]</a></li>
+        <li><a href="{{ prefix }}#projects">[Projects]</a></li>
+        <li><a href="{{ prefix }}#work">[Work]</a></li>
+        {%- if site.posts.size > 0 %}
+        <li><a href="{{ '/writing/' | relative_url }}"{% if page.url contains '/writing/' %} aria-current="page"{% endif %}>[Writing]</a></li>
+        {%- endif %}
+        <li><a href="{{ prefix }}#experience">[Experience]</a></li>
+        <li><a href="{{ '/archive/' | relative_url }}"{% if page.url contains '/archive/' %} aria-current="page"{% endif %}>[Archive]</a></li>
+        <li><a href="{{ prefix }}#contact">[Contact]</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><span class="to-dark">[Dark]</span><span class="to-light">[Light]</span></button>
+  </div>
+</header>

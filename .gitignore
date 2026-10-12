@@ -71,3 +71,6 @@ build-iPhoneSimulator/
 
 # End of https://www.toptal.com/developers/gitignore/api/jekyll,ruby
 *.mp4
+
+# macOS
+.DS_Store

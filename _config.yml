@@ -1,108 +1,73 @@
-# WhatATheme
-markdown: kramdown
+# ─────────────────────────────────────────────────────────────
+#  kylerrussell.github.io
+#  Most of the page content lives in _data/*.yml — edit those
+#  to add projects, experience, or archive items.
+# ─────────────────────────────────────────────────────────────
 
-# URL of the Site
-url: 'https://kylerrussell.github.io'
-# Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
-baseurl: 
-
-# Title of the Site
 title: Kyler Russell
-# Description of the Site
-description: Thanks for checking out my site. I created this site to display my projects, information, and blog posts. 
-# URL of Image of the Site
-site-image: 
-# Keywords of the Site
-site-keywords: Portfolio
-# URL for the Image of custom Favicon
-favicon-url: 
+tagline: ML research · low-bit LLM quantization · recurrent & brain-inspired models · RL
+description: >-
+  Kyler Russell is a computer science student at the University of Kansas
+  and independent ML researcher working on extreme low-bit (ternary) LLM
+  quantization, recurrent and brain-inspired architectures, and reinforcement learning.
+url: "https://kylerrussell.github.io"
+baseurl: ""
+lang: en
 
-# URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
-heroimage: https://kylerrussell.github.io/assets/images/engineeringdrawing.jpg
+author:
+  name: Kyler Russell
+  email: KylerRssll@gmail.com
+  location: Lenexa, Kansas
+  image: /assets/img/portrait.jpg
 
-# Social Media and Contact
-# If you don't want to use any icon, you can leave them blank.
-email: kylerrussell@protonmail.com
-phone: 913-337-6518
-#facebook_username: /
-#twitter_username: /
-#instagram_username: /
-linkedin_username: kyler-russell
-github_username:  KylerRussell
-#youtube_channel_id: /
-#reddit_username: /
-#behance_username: /
-#dribbble_username: /
-#spotify_username: /
+social:
+  github: KylerRussell
+  linkedin: kyler-russell
 
-# Google Analytics
-google-analytics: 
+# Set to a path like /assets/kyler-russell-resume.pdf to show a résumé button
+resume: /assets/kyler-russell-resume.pdf
 
-# Disqus
-disqus-shortname: Kyler Russell
+# "Now active" lab radar under the hero — one short line per active thread.
+radar:
+  - { tag: CTM, text: "tick-count & LR-sweep studies" }
+  - { tag: Brain, text: "developmental language curriculum" }
+  - { tag: Quant, text: "Qwen3.6-27B → TQ1_64" }
 
-# Name of the Author
-author-name: Kyler Russell
-# URL for the Image of the Author
-author-image: https://kylerrussell.github.io/assets/images/square_me.jpg
-# 60 Words About the Author
-author-about: I'm Kyler Russell, a senior at Olathe Northwest in the Engineering Academy with a passion for cybersecurity, programming, and networking. I am a CyberPatriot XV National Finalist and looking forward to continue exploring the field of cybersecurity and computer science in college.
-# URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
-author-url: https://www.linkedin.com/in/kyler-russell/
+# jekyll-seo-tag
+logo: /assets/img/portrait.jpg
+image: /assets/img/portrait.jpg
 
-# SASS
-sass:
-  sass_dir: _sass
-  style: compressed
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
-# Build settings
+permalink: /writing/:year/:title/
+
 plugins:
-  - jekyll-admin
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
-# Permalink
-permalink: "blog/:title"
+feed:
+  path: feed.xml
 
-# Compress
-compress_html:
-  clippings: all
-
-# Defaults
 defaults:
-  -
-    scope:
-      type: 'posts'
-    values:
-      layout: post
-      post-image: ""
-      description: ""
-      tags:
-        - ""
-  -
-    scope:
-      type: 'pages'
-    values:
-      layout: page
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "" }
+    values: { layout: page }
 
-# Scope Fixes?
-collections:
-  projects:
-    output: true
-    sort_by: order
-
-
-# Exclude
 exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
+  - README.md
+  - LICENSE
   - Gemfile
   - Gemfile.lock
+  - vendor/
   - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-
-
-
+  - .sass-cache/
+  - .jekyll-cache/
+  # Original full-resolution photos. Web-sized copies live in assets/img/.
+  - assets/images/
+  - _to_delete/
+  - .claude-tmp/

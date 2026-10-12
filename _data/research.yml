@@ -1,0 +1,68 @@
+# Research triad — three equal pillars on the home page; also listed on /archive/.
+# Fields: pillar, title, repo, status, period, year (start year, for /archive/),
+#         current (true = show on home page), active (true = ongoing; shows a pulse on /archive/), finding (one line, shown as a
+#         high-contrast badge), summary, points (≤4), links (list of {label, url})
+
+- pillar: Recurrent computation
+  title: Continuous Thought Machine LMs
+  repo: CTM-Transformer
+  status: Active
+  period: Apr 2026 – present
+  year: "2026"
+  kind: Research
+  current: true
+  active: true
+  finding: "16-tick CTM beats its matched 1-tick control by 0.157 nats @ 400M tokens — pre-registered, FLOP-matched"
+  summary: >-
+    Does temporal synchronization (CTM, arXiv:2505.05522) improve recurrent
+    computation in language models beyond what recurrent depth alone provides
+    (arXiv:2502.05171)? Tested against standard and recurrent-depth Transformers
+    on identical data.
+  points:
+    - "Pre-registered plan: FLOP- and token-matched comparisons, 2×2 mechanism ablations, paired-bootstrap statistics, go/no-go gates"
+    - "Cross-position ticks add 18.6 points on a synthetic word-problem task; tick-count controls show no gain at 100M tokens"
+    - "Code audit caught silent bugs — permutation-invariant token attention, unwired config flags, eval tokenization errors"
+  links:
+    - { label: "GitHub", url: "https://github.com/KylerRussell/CTM-Transformer" }
+
+- pillar: Biological computation
+  title: Living Brain
+  repo: Living-Brain
+  status: Active
+  period: Jan 2026 – present
+  year: "2026"
+  kind: Research
+  current: true
+  active: true
+  finding: "Cerebellar module passes a 26-benchmark neurobiology suite — eyeblink, VOR, saccades, interval timing"
+  summary: >-
+    A biologically grounded neural engine: GPU predictive coding over thousands
+    of model neurons on hierarchical modular graphs, with NMDA/AMPA dynamics,
+    shunting inhibition, interneuron subtypes, and short- and long-term plasticity.
+  points:
+    - "Cerebellar forward/inverse models alongside the classic conditioning and adaptation benchmarks"
+    - "Developmental language curriculum — holophrases → slot-and-frame → complex constructions — reaching mid-90s accuracy on stage one"
+    - "Experiments distributed across the home cluster with Ray"
+  links:
+    - { label: "GitHub", url: "https://github.com/KylerRussell/Living-Brain" }
+
+- pillar: Discrete computation
+  title: Ternary LLM quantization
+  repo: Model-to-Ternary
+  status: Active
+  period: May 2026 – present
+  year: "2026"
+  kind: Research
+  current: true
+  active: true
+  finding: "1.78 bits / weight · 82.1% held-out token agreement · closed-form Gram solve cuts compute 20–30×"
+  summary: >-
+    Compressing Qwen3.6-27B — a 64-layer hybrid Gated-DeltaNet / attention model —
+    to {−1, 0, +1} weights that run natively in llama.cpp: rotation → calibration →
+    block-wise reconstruction → latent assignment training → distillation → GGUF.
+  points:
+    - "Designed TQ1_64, a self-contained ternary format with a bit-exact reference encoder; 64-weight scale groups beat stock 256-weight formats (79.3% → 82.1%)"
+    - "Surveyed 13 sub-2-bit format families: reconstruction error predicts perplexity at r = 0.996 — including where my own format was Pareto-dominated"
+    - "Traced 3.5–4× slowdowns to CPU-optimizer serialization; fixed with a fused multi-threaded Adam and pinned async H2D ring buffers"
+  links:
+    - { label: "GitHub", url: "https://github.com/KylerRussell/Model-to-Ternary" }

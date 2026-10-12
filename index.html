@@ -1,0 +1,208 @@
+---
+layout: default
+title: Kyler Russell
+body_class: home
+---
+{%- assign recent_posts = site.posts | slice: 0, 4 -%}
+
+<section class="hero frame" aria-labelledby="hero-title">
+  <div class="hero-text">
+    <h1 id="hero-title">{{ site.author.name | upcase }}</h1>
+    <p class="hero-sub">Computer Science &amp; ML Researcher.</p>
+    <p class="hero-meta">CS Junior, University of Kansas — Class of 2027 · {{ site.author.location }}</p>
+    {%- if site.radar %}
+    <p class="radar" aria-label="Currently active experiments">
+      <span class="prompt" aria-hidden="true">~ %</span>
+      <span class="radar-label"><i class="pulse" aria-hidden="true"></i>now active:</span>
+      {%- for r in site.radar %}
+      <span class="radar-item"><b>[{{ r.tag }}]</b> {{ r.text }}</span>
+      {%- endfor %}
+    </p>
+    {%- endif %}
+    <p class="hero-links">
+      {%- if site.resume and site.resume != '' %}<a href="{{ site.resume | relative_url }}">[Résumé&nbsp;PDF]</a>{% endif %}
+      <a href="https://github.com/{{ site.social.github }}">[GitHub]</a>
+      <a href="https://www.linkedin.com/in/{{ site.social.linkedin }}">[LinkedIn]</a>
+      <a href="mailto:{{ site.author.email }}">[Email]</a>
+    </p>
+  </div>
+  <figure class="hero-photo">
+    <img src="{{ site.author.image | relative_url }}" alt="Portrait of {{ site.author.name }}" width="900" height="900">
+  </figure>
+</section>
+
+<!-- ───────── 01 Research triad ───────── -->
+<section id="research" class="frame sec sec-wide" aria-labelledby="research-title">
+  <p class="sec-num">01</p>
+  <h2 id="research-title" class="sec-title">Research</h2>
+  <div class="sec-body">
+    <div class="intro">
+      <p>Three questions about how computation is carried out — in recurrent time, in biological circuits, and in discrete silicon. All run solo, hypothesis-first with paired controls, on a self-built 2× RTX 3090 server; negative results get written up as carefully as positive ones.</p>
+    </div>
+    <div class="triad">
+      {%- assign research = site.data.research | where: "current", true %}
+      {%- for r in research %}
+      <article class="pillar">
+        <p class="pillar-kicker">0{{ forloop.index }} / {{ r.pillar }}</p>
+        <h3>{{ r.title }}</h3>
+        <p class="pillar-meta">{{ r.repo }} · <span class="red">{{ r.period }}</span></p>
+        <div class="finding"><span>Finding</span><p>{{ r.finding }}</p></div>
+        <p class="pillar-summary">{{ r.summary }}</p>
+        <ul class="r-points">
+          {%- for p in r.points %}<li>{{ p }}</li>{% endfor %}
+        </ul>
+        <p class="pillar-links">
+          <b>Status: {{ r.status }}</b>
+          {%- for l in r.links %}<a href="{{ l.url }}">[{{ l.label }}&nbsp;↗]</a>{% endfor %}
+        </p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 02 Personal projects ───────── -->
+<section id="projects" class="frame sec sec-wide" aria-labelledby="projects-title">
+  <p class="sec-num">02</p>
+  <h2 id="projects-title" class="sec-title">Personal projects</h2>
+  <div class="sec-body">
+    {%- assign projects = site.data.projects | where: "current", true %}
+    {%- for p in projects %}
+    {%- if p.feature %}
+    <article class="feature-project">
+      <p class="sec-lede"><b>{{ p.title }}</b> — {{ p.subtitle }} · <span class="red">{{ p.period }}</span> · <a href="{{ p.url }}">[GitHub&nbsp;↗]</a></p>
+      <div class="rl">
+        <div class="rl-diagram" role="img" aria-label="Two networks: a combat network for card plays and a run network for deck building and HP management, both set-tokenized Transformer encoders with an action-embedding scoring head">
+          <p class="diagram-cap">fig. 1 — agent architecture</p>
+          {%- for net in p.networks %}
+          <div class="lane">
+            <div class="lane-head"><b>{{ net.name }}</b><span>{{ net.size }}</span></div>
+            <div class="flow">
+              <div class="node node-in">{{ net.input }}</div>
+              <span class="arrow" aria-hidden="true">→</span>
+              <div class="node">Set tokenizer</div>
+              <span class="arrow" aria-hidden="true">→</span>
+              <div class="node">Transformer encoder</div>
+              <span class="arrow" aria-hidden="true">→</span>
+              <div class="node">Action-embedding scorer</div>
+              <span class="arrow" aria-hidden="true">→</span>
+              <div class="node node-out">{{ net.output }}</div>
+            </div>
+          </div>
+          {%- endfor %}
+        </div>
+        <div class="rl-text">
+          <div class="finding"><span>Finding</span><p>{{ p.finding }}</p></div>
+          <p>{{ p.summary }}</p>
+          <ol class="story">
+            {%- for st in p.story %}
+            <li><span>{{ st.label }}</span><p>{{ st.text }}</p></li>
+            {%- endfor %}
+          </ol>
+          <ul class="chips">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+        </div>
+      </div>
+    </article>
+    {%- endif %}
+    {%- endfor %}
+    <div class="spec-grid">
+      {%- for p in projects %}
+      {%- unless p.feature %}
+      <article class="spec">
+        <p class="spec-head"><span>{{ p.title }}</span><span>{{ p.period }}</span></p>
+        <p class="spec-summary">{{ p.summary }}</p>
+        <dl>
+          {%- for row in p.spec %}
+          <div><dt>{{ row.key }}</dt><dd>{{ row.value }}</dd></div>
+          {%- endfor %}
+        </dl>
+        <p class="spec-links"><a href="{{ p.url }}">[{{ p.repo }}&nbsp;↗]</a></p>
+      </article>
+      {%- endunless %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ───────── 03 Work ───────── -->
+<section id="work" class="frame sec sec-wide" aria-labelledby="work-title">
+  <p class="sec-num">03</p>
+  <h2 id="work-title" class="sec-title">Work</h2>
+  <div class="sec-body">
+    <div class="work-grid">
+      {%- assign work = site.data.work | where: "current", true %}
+      {%- for w in work %}
+      {%- if w.stat %}
+      <a class="venture" href="{{ w.url }}">
+        <p class="venture-top"><span>{{ w.title }}</span><span>{{ w.period }}</span></p>
+        <p class="venture-stat">{{ w.stat }}</p>
+        <p class="venture-label">{{ w.stat_label }}</p>
+        <p class="venture-role">{{ w.role }}</p>
+        <p class="venture-summary">{{ w.summary }}</p>
+        <p class="venture-link">[{{ w.link_label }}&nbsp;↗]</p>
+      </a>
+      {%- else %}
+      <a class="work-card" href="{{ w.url }}">
+        <p class="venture-top"><span>{{ w.kind }}</span><span>{{ w.period }}</span></p>
+        <h3>{{ w.title }}</h3>
+        <p class="work-role">{{ w.role }}</p>
+        <p class="work-summary">{{ w.summary }}</p>
+        <ul class="chips">{% for t in w.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+        <p class="venture-link">[{{ w.link_label }}&nbsp;↗]</p>
+      </a>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+    <p class="archive-cta"><a href="{{ '/archive/' | relative_url }}">[Everything I've built, by year&nbsp;→]</a> <span>Research, projects, work and high-school engineering — 2016 to now.</span></p>
+  </div>
+</section>
+
+{%- if recent_posts.size > 0 %}
+<section id="writing" class="frame sec sec-wide" aria-labelledby="writing-title">
+  <p class="sec-num">✎</p>
+  <h2 id="writing-title" class="sec-title">Writing</h2>
+  <div class="sec-body">
+    <ul class="rows">
+      {%- for post in recent_posts %}
+      <li><a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b><span>{{ post.date | date: '%b %-d, %Y' }}</span></a></li>
+      {%- endfor %}
+    </ul>
+    <p class="more"><a href="{{ '/writing/' | relative_url }}">[All writing ↗]</a></p>
+  </div>
+</section>
+{%- endif %}
+
+<!-- ───────── 04 Experience ───────── -->
+<section id="experience" class="frame sec sec-wide" aria-labelledby="experience-title">
+  <p class="sec-num">04</p>
+  <h2 id="experience-title" class="sec-title">Experience</h2>
+  <div class="sec-body">
+    <ul class="rows rows-2">
+      {%- for e in site.data.experience %}
+      <li>
+        <b>{{ e.title }}</b>
+        <span>{{ e.org }}{% if e.when != '' %} — <em class="red">{{ e.when }}</em>{% endif %}</span>
+        {%- if e.note %}<small>{{ e.note }}</small>{% endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<!-- ───────── 05 Contact ───────── -->
+<section id="contact" class="frame sec sec-wide contact" aria-labelledby="contact-title">
+  <p class="sec-num">05</p>
+  <h2 id="contact-title" class="sec-title">Contact</h2>
+  <div class="sec-body">
+    <p class="contact-big">Open to research collaborations, internships and interesting problems.</p>
+    <ul class="contact-links">
+      <li><span>Email</span><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+      <li><span>GitHub</span><a href="https://github.com/{{ site.social.github }}">github.com/{{ site.social.github }}</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/{{ site.social.linkedin }}">linkedin.com/in/{{ site.social.linkedin }}</a></li>
+      {%- if site.resume and site.resume != '' %}
+      <li><span>Résumé</span><a href="{{ site.resume | relative_url }}">Download PDF ↓</a></li>
+      {%- endif %}
+    </ul>
+  </div>
+</section>
+

@@ -1,0 +1,90 @@
+# Earlier work (high school / Olathe Northwest Engineering Academy).
+# Shown only on the /archive/ page, grouped by start `year`.
+# Fields: title, kind, year (start year), period (display), summary, tags,
+#         images (list of {src, alt, fit}) — fit: contain for logos/drawings
+
+- title: CyberPatriot — 5th of 5,266 nationally
+  kind: High school
+  year: "2021"
+  period: "2021 – 24"
+  summary: >-
+    Networking specialist and club president for our team in the Air Force
+    Association's national youth cyber-defense competition — firewall policy,
+    vulnerability remediation and system hardening against the clock — finishing
+    5th of 5,266 teams at the national finals in Washington, D.C.
+  tags: [Cybersecurity, Networking]
+  images:
+    - { src: /assets/img/cp-logo.jpg, alt: "CyberPatriot logo", fit: contain }
+    - { src: /assets/img/cp-capitol.jpg, alt: "The U.S. Capitol during the national finals trip" }
+
+- title: FIRST Tech Challenge
+  kind: High school
+  year: "2022"
+  period: "2022 – 23"
+  summary: >-
+    Led the programming team for a mecanum-drive competition robot: Java
+    control software with autonomous AprilTag image detection, driver-assist
+    systems and real-time sensor integration.
+  tags: [Robotics, Java]
+  images:
+    - { src: /assets/img/ftc-chassis.jpg, alt: "Mecanum-drive chassis with motion arrows drawn around it" }
+    - { src: /assets/img/ftc-robot.jpg, alt: "Robot wiring and control hub" }
+    - { src: /assets/img/ftc-build.jpg, alt: "Robot frame on the workbench" }
+
+- title: Balsa towers
+  kind: High school
+  year: "2023"
+  period: "2023"
+  summary: >-
+    Drafted, prototyped and iterated on lightweight balsa towers, then
+    load-tested the final design to failure on a universal testing machine.
+  tags: [Structures, Drafting]
+  images:
+    - { src: /assets/img/towers-test.jpg, alt: "Tower being load-tested in a universal testing machine" }
+    - { src: /assets/img/towers-final.jpg, alt: "Two finished balsa towers" }
+    - { src: /assets/img/towers-drawing.jpg, alt: "Technical drawing of the tower design" }
+
+- title: Cast rings
+  kind: High school
+  year: "2022"
+  period: "2022"
+  summary: >-
+    Modeled custom rings in CAD, 3D-printed the patterns, and turned them into
+    metal through investment casting.
+  tags: [CAD, Manufacturing]
+  images:
+    - { src: /assets/img/rings-final.jpg, alt: "Finished cast metal ring with raised lettering" }
+    - { src: /assets/img/rings-cast.jpg, alt: "Printed ring patterns on a sprue" }
+
+- title: Hand-crank light
+  kind: High school
+  year: "2021"
+  period: "2021"
+  summary: >-
+    Concept design for a hand-crank generator light — gear train, generator,
+    battery and LED laid out from first sketches.
+  tags: [Design, Electronics]
+  images:
+    - { src: /assets/img/crank-light.jpg, alt: "Notebook sketch of the hand-crank light" }
+
+- title: Pinhole camera
+  kind: High school
+  year: "2020"
+  period: "2020"
+  summary: >-
+    Took a working pinhole camera from a hand-drawn plan to a light-tight build
+    out of a shipping box, aluminum foil and a precisely punched aperture.
+  tags: [Optics, Prototyping]
+  images:
+    - { src: /assets/img/pinhole-final.jpg, alt: "Finished pinhole camera" }
+    - { src: /assets/img/pinhole-sketch.jpg, alt: "Hand-drawn pinhole camera plan" }
+
+- title: Truss bridge
+  kind: High school
+  year: "2020"
+  period: "2020"
+  summary: >-
+    A lightweight balsa truss bridge built for strength-to-weight testing.
+  tags: [Structures]
+  images:
+    - { src: /assets/img/bridges.jpg, alt: "Balsa truss bridge" }

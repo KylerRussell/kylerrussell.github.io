@@ -1,0 +1,35 @@
+# Education, roles and recognition, newest first.
+# Fields: when, title, org, note (optional)
+
+- when: 2024 – 2027
+  title: B.S. Computer Science
+  org: University of Kansas
+  note: "Junior · expected May 2027. Coursework: Artificial Intelligence, Deep Learning, Databases."
+
+- when: Fall 2025
+  title: Study abroad, Computer Science
+  org: Korea University, Seoul
+
+- when: 2023 – present
+  title: Independent ML Researcher & Home Lab Administrator
+  org: Self-directed
+  note: Design, build and run the compute and software stack behind my research — a multi-GPU Linux server, a Kubernetes cluster and VPN-only networked services — with every experiment logged as hypothesis, controls and outcome.
+
+- when: 2016 – present
+  title: Co-founder & Co-CEO
+  org: ComfyCup LLC
+  note: Co-invented a consumer product and scaled it to 100,000+ units sold worldwide.
+
+- when: 2021 – 2024
+  title: Networking Specialist & Club President
+  org: CyberPatriot
+  note: Placed 5th nationally out of 5,266 teams in the national youth cyber-defense competition.
+
+- when: 2022 – 2023
+  title: Programming Team Leader
+  org: FIRST Tech Challenge
+  note: Led Java robot software — autonomous image detection, driver assist, real-time sensor integration — plus source control and code review.
+
+- when: ""
+  title: Honors
+  org: Eagle Scout (BSA Troop 587) · German Silver Seal of Biliteracy (2024)
