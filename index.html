@@ -5,7 +5,7 @@ body_class: home
 ---
 {%- assign recent_posts = site.posts | slice: 0, 4 -%}
 
-<section class="hero frame" aria-labelledby="hero-title">
+<section class="hero frame grid12" aria-labelledby="hero-title">
   <div class="hero-text">
     <h1 id="hero-title">{{ site.author.name | upcase }}</h1>
     <p class="hero-sub">Computer Science &amp; ML Researcher.</p>
@@ -32,14 +32,14 @@ body_class: home
 </section>
 
 <!-- ───────── 01 Research triad ───────── -->
-<section id="research" class="frame sec sec-wide" aria-labelledby="research-title">
+<section id="research" class="frame sec sec-wide grid12" aria-labelledby="research-title">
   <p class="sec-num">01</p>
   <h2 id="research-title" class="sec-title">Research</h2>
-  <div class="sec-body">
+  <div class="sec-body sub12">
     <div class="intro">
       <p>Three questions about how computation is carried out — in recurrent time, in biological circuits, and in discrete silicon. All run solo, hypothesis-first with paired controls, on a self-built 2× RTX 3090 server; negative results get written up as carefully as positive ones.</p>
     </div>
-    <div class="triad">
+    <div class="triad sub12">
       {%- assign research = site.data.research | where: "current", true %}
       {%- for r in research %}
       <article class="pillar">
@@ -62,31 +62,27 @@ body_class: home
 </section>
 
 <!-- ───────── 02 Personal projects ───────── -->
-<section id="projects" class="frame sec sec-wide" aria-labelledby="projects-title">
+<section id="projects" class="frame sec sec-wide grid12" aria-labelledby="projects-title">
   <p class="sec-num">02</p>
   <h2 id="projects-title" class="sec-title">Personal projects</h2>
-  <div class="sec-body">
+  <div class="sec-body sub12">
     {%- assign projects = site.data.projects | where: "current", true %}
     {%- for p in projects %}
     {%- if p.feature %}
-    <article class="feature-project">
+    <article class="feature-project sub12">
       <p class="sec-lede"><b>{{ p.title }}</b> — {{ p.subtitle }} · <span class="red">{{ p.period }}</span> · <a href="{{ p.url }}">[GitHub&nbsp;↗]</a></p>
-      <div class="rl">
-        <div class="rl-diagram" role="img" aria-label="Two networks: a combat network for card plays and a run network for deck building and HP management, both set-tokenized Transformer encoders with an action-embedding scoring head">
-          <p class="diagram-cap">fig. 1 — agent architecture</p>
+      <div class="rl sub12">
+        <div class="rl-diagram" role="img" aria-label="One shared transformer handles both combat decisions and run decisions: state and one token per legal action go in, the shared trunk scores the candidates">
+          <p class="diagram-cap">{{ p.figure_caption | default: "fig. 1" }}</p>
           {%- for net in p.networks %}
           <div class="lane">
             <div class="lane-head"><b>{{ net.name }}</b><span>{{ net.size }}</span></div>
             <div class="flow">
-              <div class="node node-in">{{ net.input }}</div>
-              <span class="arrow" aria-hidden="true">→</span>
-              <div class="node">Set tokenizer</div>
-              <span class="arrow" aria-hidden="true">→</span>
-              <div class="node">Transformer encoder</div>
-              <span class="arrow" aria-hidden="true">→</span>
-              <div class="node">Action-embedding scorer</div>
-              <span class="arrow" aria-hidden="true">→</span>
-              <div class="node node-out">{{ net.output }}</div>
+              {%- for node in net.nodes %}
+              {%- if forloop.first %}<div class="node node-in">{{ node }}</div>
+              {%- elsif forloop.last %}<span class="arrow" aria-hidden="true">→</span><div class="node node-out">{{ node }}</div>
+              {%- else %}<span class="arrow" aria-hidden="true">→</span><div class="node{% if node contains 'Shared' %} node-shared{% endif %}">{{ node }}</div>{% endif %}
+              {%- endfor %}
             </div>
           </div>
           {%- endfor %}
@@ -105,7 +101,7 @@ body_class: home
     </article>
     {%- endif %}
     {%- endfor %}
-    <div class="spec-grid">
+    <div class="spec-grid sub12">
       {%- for p in projects %}
       {%- unless p.feature %}
       <article class="spec">
@@ -125,11 +121,11 @@ body_class: home
 </section>
 
 <!-- ───────── 03 Work ───────── -->
-<section id="work" class="frame sec sec-wide" aria-labelledby="work-title">
+<section id="work" class="frame sec sec-wide grid12" aria-labelledby="work-title">
   <p class="sec-num">03</p>
   <h2 id="work-title" class="sec-title">Work</h2>
-  <div class="sec-body">
-    <div class="work-grid">
+  <div class="sec-body sub12">
+    <div class="work-grid sub12">
       {%- assign work = site.data.work | where: "current", true %}
       {%- for w in work %}
       {%- if w.stat %}
@@ -158,10 +154,10 @@ body_class: home
 </section>
 
 {%- if recent_posts.size > 0 %}
-<section id="writing" class="frame sec sec-wide" aria-labelledby="writing-title">
+<section id="writing" class="frame sec sec-wide grid12" aria-labelledby="writing-title">
   <p class="sec-num">✎</p>
   <h2 id="writing-title" class="sec-title">Writing</h2>
-  <div class="sec-body">
+  <div class="sec-body sub12">
     <ul class="rows">
       {%- for post in recent_posts %}
       <li><a href="{{ post.url | relative_url }}"><b>{{ post.title }}</b><span>{{ post.date | date: '%b %-d, %Y' }}</span></a></li>
@@ -173,11 +169,11 @@ body_class: home
 {%- endif %}
 
 <!-- ───────── 04 Experience ───────── -->
-<section id="experience" class="frame sec sec-wide" aria-labelledby="experience-title">
+<section id="experience" class="frame sec sec-wide grid12" aria-labelledby="experience-title">
   <p class="sec-num">04</p>
   <h2 id="experience-title" class="sec-title">Experience</h2>
-  <div class="sec-body">
-    <ul class="rows rows-2">
+  <div class="sec-body sub12">
+    <ul class="rows rows-2 sub12">
       {%- for e in site.data.experience %}
       <li>
         <b>{{ e.title }}</b>
@@ -190,10 +186,10 @@ body_class: home
 </section>
 
 <!-- ───────── 05 Contact ───────── -->
-<section id="contact" class="frame sec sec-wide contact" aria-labelledby="contact-title">
+<section id="contact" class="frame sec sec-wide contact grid12" aria-labelledby="contact-title">
   <p class="sec-num">05</p>
   <h2 id="contact-title" class="sec-title">Contact</h2>
-  <div class="sec-body">
+  <div class="sec-body sub12">
     <p class="contact-big">Open to research collaborations, internships and interesting problems.</p>
     <ul class="contact-links">
       <li><span>Email</span><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>

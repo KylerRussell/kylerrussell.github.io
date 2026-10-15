@@ -4,7 +4,7 @@
 #         high-contrast badge), summary, points (≤4), links (list of {label, url})
 
 - pillar: Recurrent computation
-  title: Continuous Thought Machine LMs
+  title: The CTM Transformer
   repo: CTM-Transformer
   status: Active
   period: Apr 2026 – present
@@ -12,16 +12,18 @@
   kind: Research
   current: true
   active: true
-  finding: "16-tick CTM beats its matched 1-tick control by 0.157 nats @ 400M tokens — pre-registered, FLOP-matched"
+  finding: "Beats the matched 8-layer Transformer by 0.040 nats on both seeds — but ties the best recurrent-depth Transformer (+0.014) under a pre-registered 0.02 rule"
   summary: >-
-    Does temporal synchronization (CTM, arXiv:2505.05522) improve recurrent
-    computation in language models beyond what recurrent depth alone provides
-    (arXiv:2502.05171)? Tested against standard and recurrent-depth Transformers
-    on identical data.
+    A Transformer whose own layers take on Continuous Thought Machine mechanisms
+    (arXiv:2505.05522) — internal ticks, neuron-level models, synchronization-driven
+    attention — zero-initialized so it starts exactly as its baselines, then
+    compared against the best recurrent-depth Transformer (arXiv:2502.05171) at
+    matched size, 400M tokens, two seeds.
   points:
-    - "Pre-registered plan: FLOP- and token-matched comparisons, 2×2 mechanism ablations, paired-bootstrap statistics, go/no-go gates"
-    - "Cross-position ticks add 18.6 points on a synthetic word-problem task; tick-count controls show no gain at 100M tokens"
-    - "Code audit caught silent bugs — permutation-invariant token attention, unwired config flags, eval tokenization errors"
+    - "Withdrew my own earlier headline: the 0.157-nat tick gain came from a non-residual readout — with a residual path the ticks were worth 0.012"
+    - "Diagnosed a separate-head CTM's dead ticks: the gain was a quadratic feature of the start state, with tiny tick states and decays stuck at 0 trapping the synchronization readout"
+    - "Tuned a recurrent-depth recipe that beats its matched Transformer by 0.054 nats on both seeds and lands within ~0.02 of a 20-layer Transformer at equal compute"
+    - "Now running per-mechanism ablations (sync queries, sync output, neuron-level models), rules fixed before the runs"
   links:
     - { label: "GitHub", url: "https://github.com/KylerRussell/CTM-Transformer" }
 
@@ -34,15 +36,16 @@
   kind: Research
   current: true
   active: true
-  finding: "Cerebellar module passes a 26-benchmark neurobiology suite — eyeblink, VOR, saccades, interval timing"
+  finding: "Recalls familiar phrases at 88.6% next-byte accuracy — but harder language tasks stay below a bigram baseline, and a periodic weight reset was cutting recall to 23.7%"
   summary: >-
     A biologically grounded neural engine: GPU predictive coding over thousands
     of model neurons on hierarchical modular graphs, with NMDA/AMPA dynamics,
-    shunting inhibition, interneuron subtypes, and short- and long-term plasticity.
+    shunting inhibition, interneuron subtypes, local plasticity and a cerebellar
+    learner — now under reproducible language-capability audits.
   points:
-    - "Cerebellar forward/inverse models alongside the classic conditioning and adaptation benchmarks"
-    - "Developmental language curriculum — holophrases → slot-and-frame → complex constructions — reaching mid-90s accuracy on stage one"
-    - "Experiments distributed across the home cluster with Ray"
+    - "Found and fixed six implementation defects — learned weights ignored during settling, reversed sparse propagation, missing intra-column wiring, overridden noise settings"
+    - "Language audits use clean seeded splits, train-only n-gram baselines, balanced delayed-cue probes and matched reset controls; every score independently recomputed"
+    - "Cerebellar module passed a 26-benchmark neurobiology suite in July — eyeblink, VOR and saccade adaptation, interval timing"
   links:
     - { label: "GitHub", url: "https://github.com/KylerRussell/Living-Brain" }
 

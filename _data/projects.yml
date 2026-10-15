@@ -7,26 +7,33 @@
 - title: AlphaSlayer
   kind: Personal project
   year: "2026"
-  period: "2026"
+  period: Aug 2026 – present
   current: true
   active: true
   feature: true
-  subtitle: A two-network RL agent for Slay the Spire 2
+  subtitle: One transformer that plays every Slay the Spire 2 decision
   url: "https://github.com/KylerRussell/AlphaSlayer"
-  finding: "Scripted heuristics out-reached the trained net on bosses → the bottleneck was run policy, not combat"
+  finding: "Every run-outcome value head scored worse than its base rate on held-out runs, while the per-fight head generalised (AUC 0.91) — so credit now comes from potential shaping on act progress, HP and fight-win probability"
   summary: >-
-    Slay the Spire is two problems stacked: winning each fight, and steering a
-    whole run so you arrive at the boss with a deck and HP that can win.
-    AlphaSlayer splits them into a fast tactical network and a larger strategic
-    one, both Transformer encoders over set-tokenized game state.
+    AlphaSlayer replaced its separate combat and run networks with one 18.5M-parameter
+    transformer over entity tokens: every legal action is a candidate token that
+    attends to the whole state, so a card reward can look at the deck it would join.
+    One run-level value prices potions, HP and resources by what they're worth
+    later in the run.
   story:
-    - { label: "Observation", text: "Hand-written heuristics beat the trained agent on boss-reach rate." }
-    - { label: "Diagnosis", text: "Combat skill wasn't the ceiling — HP and deck management before bosses was." }
-    - { label: "Rebuild", text: "Training reworked around Generalized Advantage Estimation and paired-seed evaluation." }
+    - { label: "Distil", text: "Imitation on 786k decisions: one network matches both old teachers at every size (91.5% held-out agreement; win rate 0.056 vs 0.048)." }
+    - { label: "Diagnose", text: "Win-only PPO random-walked at 1–2 wins per iteration; run-level value heads were memorising runs, not generalising." }
+    - { label: "Stabilise", text: "Potential-based shaping, per-floor λ and per-kind advantage centring: the first stable PPO configuration." }
+    - { label: "Now", text: "Holding the distilled policy, not yet beating it; two act bosses cap the win rate. Next: capability evals and search." }
+  figure_caption: "fig. 1 — one network, every decision"
   networks:
-    - { name: Combat network, size: "~5–15M params", input: "Hand · piles · enemies & intents", output: "Card plays & targets" }
-    - { name: Run network, size: "~20–50M params", input: "Deck · relics · HP · map", output: "Deck building & HP management" }
-  tags: [Reinforcement learning, PyTorch, Transformers, GAE]
+    - name: Combat decision
+      size: "18.5M params · shared"
+      nodes: ["Hand · enemies · piles · potions", "One token per play & target", "Shared trunk (loopable core)", "Card play & target"]
+    - name: Run decision
+      size: "same weights"
+      nodes: ["Deck · relics · map · gold", "One token per reward, shop item, path", "Shared trunk (loopable core)", "Deck building & route"]
+  tags: [Reinforcement learning, PPO, GAE, Distillation, PyTorch]
 
 - title: Home Kubernetes cluster
   kind: Personal project
