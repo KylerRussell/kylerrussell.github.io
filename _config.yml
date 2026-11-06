@@ -29,10 +29,10 @@ resume: /assets/kyler-russell-resume.pdf
 
 # "Now active" lab radar under the hero — one short line per active thread.
 radar:
-  - { tag: CTM, text: "per-mechanism ablations of the CTM Transformer" }
+  - { tag: CTM, text: "reasoning tasks inside text for the CTM Transformer" }
   - { tag: Brain, text: "language-capability audits" }
   - { tag: Quant, text: "Qwen3.6-27B → TQ1_64" }
-  - { tag: RL, text: "stabilising PPO for AlphaSlayer" }
+  - { tag: RL, text: "distilling search into AlphaSlayer" }
 
 # jekyll-seo-tag
 logo: /assets/img/portrait.jpg

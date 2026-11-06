@@ -13,7 +13,7 @@
   feature: true
   subtitle: One transformer that plays every Slay the Spire 2 decision
   url: "https://github.com/KylerRussell/AlphaSlayer"
-  finding: "Every run-outcome value head scored worse than its base rate on held-out runs, while the per-fight head generalised (AUC 0.91) — so credit now comes from potential shaping on act progress, HP and fight-win probability"
+  finding: "AlphaZero-style turn search in elite and boss fights nearly doubles the win rate — 0.080 → 0.156 over 463 paired seeds (p < 0.001) — after potential shaping made PPO stable but stuck at the distilled policy"
   summary: >-
     AlphaSlayer replaced its separate combat and run networks with one 18.5M-parameter
     transformer over entity tokens: every legal action is a candidate token that
@@ -24,7 +24,8 @@
     - { label: "Distil", text: "Imitation on 786k decisions: one network matches both old teachers at every size (91.5% held-out agreement; win rate 0.056 vs 0.048)." }
     - { label: "Diagnose", text: "Win-only PPO random-walked at 1–2 wins per iteration; run-level value heads were memorising runs, not generalising." }
     - { label: "Stabilise", text: "Potential-based shaping, per-floor λ and per-kind advantage centring: the first stable PPO configuration." }
-    - { label: "Now", text: "Holding the distilled policy, not yet beating it; two act bosses cap the win rate. Next: capability evals and search." }
+    - { label: "Search", text: "Exact in-game fight restore (3,310 / 3,310 replays match) enables turn search: win 0.080 → 0.156, act-2 clears 0.30 → 0.43; fixing restore leaks made each search ~12× faster." }
+    - { label: "Now", text: "Distilling search back into the policy: act-1 clears +0.035 after 20 iterations (p 0.03), win rate not yet moved. Card, shop and route search added on top." }
   figure_caption: "fig. 1 — one network, every decision"
   networks:
     - name: Combat decision
@@ -33,7 +34,7 @@
     - name: Run decision
       size: "same weights"
       nodes: ["Deck · relics · map · gold", "One token per reward, shop item, path", "Shared trunk (loopable core)", "Deck building & route"]
-  tags: [Reinforcement learning, PPO, GAE, Distillation, PyTorch]
+  tags: [Reinforcement learning, PPO, GAE, Search, Distillation, PyTorch]
 
 - title: Home Kubernetes cluster
   kind: Personal project

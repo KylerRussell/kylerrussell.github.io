@@ -12,18 +12,19 @@
   kind: Research
   current: true
   active: true
-  finding: "Beats the matched 8-layer Transformer by 0.040 nats on both seeds — but ties the best recurrent-depth Transformer (+0.014) under a pre-registered 0.02 rule"
+  finding: "Every CTM variant beats the matched 8-layer Transformer by 0.040–0.056 nats but ties the best recurrent-depth Transformer under a pre-registered 0.02 rule — and tick-scaling extrapolation turned out to come from recurrence, not the CTM"
   summary: >-
     A Transformer whose own layers take on Continuous Thought Machine mechanisms
     (arXiv:2505.05522) — internal ticks, neuron-level models, synchronization-driven
     attention — zero-initialized so it starts exactly as its baselines, then
     compared against the best recurrent-depth Transformer (arXiv:2502.05171) at
-    matched size, 400M tokens, two seeds.
+    matched size, 400M tokens, two seeds, and stress-tested on parity, adaptive
+    compute and reasoning tasks inside text.
   points:
-    - "Withdrew my own earlier headline: the 0.157-nat tick gain came from a non-residual readout — with a residual path the ticks were worth 0.012"
-    - "Diagnosed a separate-head CTM's dead ticks: the gain was a quadratic feature of the start state, with tiny tick states and decays stuck at 0 trapping the synchronization readout"
-    - "Tuned a recurrent-depth recipe that beats its matched Transformer by 0.054 nats on both seeds and lands within ~0.02 of a 20-layer Transformer at equal compute"
-    - "Now running per-mechanism ablations (sync queries, sync output, neuron-level models), rules fixed before the runs"
+    - "Ablated each mechanism: sync queries, sync output and neuron-level models each tie the recurrent-depth baseline on their own; combining all three is slightly worse, at ~2.9× its cost per tick"
+    - "Reproduced the CTM's central claim on parity — a model that runs more ticks on longer inputs and reaches 3× the trained length — then showed it becomes reliable once training ticks grow with input length, and more often without the CTM mechanisms (4/10 seeds) than with them (2/10)"
+    - "Pre-registered nulls, reported as nulls: CTM loss across ticks (diagnosed a state-norm collapse), attention sink, homeostasis, certainty exit, per-token tick budgets (caught a label leak in my own difficulty signal) — language loss is flat beyond 8 ticks in every arm"
+    - "Now: reasoning tasks embedded in text at d704 — addition is learned (CTsq 99% in-distribution) but nothing extrapolates; running addition-reliability replicates and a reasoning-heavy data mix"
   links:
     - { label: "GitHub", url: "https://github.com/KylerRussell/CTM-Transformer" }
 
