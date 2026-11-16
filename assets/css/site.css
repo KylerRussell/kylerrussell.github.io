@@ -75,20 +75,18 @@ ul, ol, dl { margin: 0; padding: 0; list-style: none; }
 
 .frame { width: 100%; max-width: var(--frame); margin-inline: auto; padding-inline: var(--pad); }
 
-/* Faint column guides behind everything */
+/* Faint gutter guides behind everything */
 body { position: relative; }
 .grid-lines { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .grid-lines { overflow: hidden; }
-.grid-lines .frame { height: 100%; padding-right: calc(var(--pad) - var(--gut)); position: relative; }
+.grid-lines .frame { height: 100%; }
 .grid-lines .frame::before {
-  /* one guide at the start of every column … */
+  /* one guide down the middle of every gutter, so text and boxes that start on a
+     column edge get half a gutter of air on each side instead of touching a line */
   content: ""; display: block; height: 100%;
   background-image: linear-gradient(90deg, var(--guide) 1px, transparent 1px);
-  background-size: calc(100% / var(--cols)) 100%;
-}
-.grid-lines .frame::after {
-  /* … plus the right edge of the content area */
-  content: ""; position: absolute; top: 0; bottom: 0; right: var(--pad); width: 1px; background: var(--guide);
+  background-size: calc((100% + var(--gut)) / var(--cols)) 100%;
+  background-position-x: calc(var(--gut) / -2);
 }
 @media (max-width: 760px) { :root { --cols: 4; } }
 
