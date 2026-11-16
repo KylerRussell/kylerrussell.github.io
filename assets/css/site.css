@@ -143,14 +143,15 @@ body { position: relative; }
 .hero-links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 1.05rem; font-weight: 500; }
 .hero-photo { margin-top: 0; margin-bottom: 0; margin-left: 0; border: 1.5px solid var(--rule); background: var(--paper-2); }
 .hero-photo img { width: 100%; aspect-ratio: 4 / 4.3; object-fit: cover; object-position: 50% 22%; filter: grayscale(1) contrast(1.08) brightness(1.02); height: auto; }
-/* Wide screens: the text column shrinks to the headline, and the portrait sits
-   centred in the space that is left instead of pinned to the right edge. */
+/* Wide screens: the text column shrinks to the headline, and the portrait floats in
+   the space that is left — a little right of centre (2 parts of the free space on
+   its left, 1 on its right) rather than pinned to the right edge. */
 @media (min-width: 761px) {
-  .hero { container-type: inline-size; grid-template-columns: min-content minmax(0, 1fr); }
+  .hero { container-type: inline-size; padding-right: var(--pad); grid-template-columns: min-content minmax(0, 2fr) auto minmax(0, 1fr); }
   .hero > .hero-text { grid-column: 1; margin-right: 0; }
-  .hero > .hero-photo { grid-column: 2; justify-self: center; width: clamp(180px, 22vw, 296px); }
+  .hero > .hero-photo { grid-column: 3; margin-right: 0; width: clamp(180px, 22vw, 296px); }
   .hero-sub { white-space: nowrap; }
-  .hero .radar { width: calc(50cqw - var(--gut)); }  /* six grid columns, as before */
+  .hero .radar { width: calc(50cqw - var(--gut) / 2); }  /* six grid columns, as before */
 }
 @media (max-width: 760px) {
   .hero h1 { white-space: normal; font-size: clamp(3.1rem, 17vw, 6rem); }
