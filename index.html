@@ -72,24 +72,26 @@ body_class: home
     <article class="feature-project sub12">
       <p class="sec-lede"><b>{{ p.title }}</b> — {{ p.subtitle }} · <span class="red">{{ p.period }}</span> · <a href="{{ p.url }}">[GitHub&nbsp;↗]</a></p>
       <div class="rl sub12">
-        <div class="rl-diagram" role="img" aria-label="One shared transformer handles both combat decisions and run decisions: state and one token per legal action go in, the shared trunk scores the candidates">
-          <p class="diagram-cap">{{ p.figure_caption | default: "fig. 1" }}</p>
-          {%- for net in p.networks %}
-          <div class="lane">
-            <div class="lane-head"><b>{{ net.name }}</b><span>{{ net.size }}</span></div>
-            <div class="flow">
-              {%- for node in net.nodes %}
-              {%- if forloop.first %}<div class="node node-in">{{ node }}</div>
-              {%- elsif forloop.last %}<span class="arrow" aria-hidden="true">→</span><div class="node node-out">{{ node }}</div>
-              {%- else %}<span class="arrow" aria-hidden="true">→</span><div class="node{% if node contains 'Shared' %} node-shared{% endif %}">{{ node }}</div>{% endif %}
-              {%- endfor %}
+        <div class="rl-main">
+          <div class="rl-diagram" role="img" aria-label="One shared transformer handles both combat decisions and run decisions: state and one token per legal action go in, the shared trunk scores the candidates">
+            <p class="diagram-cap">{{ p.figure_caption | default: "fig. 1" }}</p>
+            {%- for net in p.networks %}
+            <div class="lane">
+              <div class="lane-head"><b>{{ net.name }}</b><span>{{ net.size }}</span></div>
+              <div class="flow">
+                {%- for node in net.nodes %}
+                {%- if forloop.first %}<div class="node node-in">{{ node }}</div>
+                {%- elsif forloop.last %}<span class="arrow" aria-hidden="true">→</span><div class="node node-out">{{ node }}</div>
+                {%- else %}<span class="arrow" aria-hidden="true">→</span><div class="node{% if node contains 'Shared' %} node-shared{% endif %}">{{ node }}</div>{% endif %}
+                {%- endfor %}
+              </div>
             </div>
+            {%- endfor %}
           </div>
-          {%- endfor %}
-        </div>
-        <div class="rl-text">
           <div class="finding"><span>Finding</span><p>{{ p.finding }}</p></div>
           <p>{{ p.summary }}</p>
+        </div>
+        <div class="rl-text">
           <ol class="story">
             {%- for st in p.story %}
             <li><span>{{ st.label }}</span><p>{{ st.text }}</p></li>
